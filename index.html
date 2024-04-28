@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deep Learning Journey</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: #000;
+        color: #fff; /* Default font color */
+      }
+      .message {
+        display: none; /* Hide the message by default */
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #000;
+        color: #590630; /* Pink font color */
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(255, 105, 180, 0.5); /* Pink shadow */
+      }
+      .introduction-content {
+        display: none; /* Hide introduction content by default */
+        background-color: #000;
+        /* Pink font color */
+        font-size: xx-large;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(186, 9, 98, 0.5); /* Pink shadow */
+        margin-top: 20px;
+      }
+      .hide {
+        display: none; /* Hide the element by default */
+      }
+      .section-title {
+        color: #ff69b4; /* Pink font color */
+      }
+      .demo-card {
+        background-color: #222; /* Dark background color */
+        color: #fff; /* Light font color */
+        margin-bottom: 20px;
+        transition: transform 0.3s;
+        border-radius: 10px;
+      }
+      .demo-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255, 105, 180, 0.5); /* Pink shadow on hover */
+      }
+      .card-title {
+        font-weight: bold;
+      }
+      .card-text {
+        font-size: 16px;
+      }
+      .btn-primary {
+        background-color: #ff69b4; /* Pink button color */
+        border-color: #ff69b4; /* Pink border color */
+      }
+      .btn-primary:hover {
+        background-color: #d147a3; /* Darker pink on hover */
+        border-color: #d147a3;
+      }
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .introduction-content,
+      #interactiveDemos,
+      #tutorialVideos {
+        animation: fadeInUp 1s ease forwards;
+      }
+   
+  /* CSS for hover effect and border */
+  .card {
+    border: 2px solid transparent; /* Transparent border by default */
+    transition: border-color 0.3s; /* Smooth transition for border color change */
+  }
+
+  .card:hover {
+    border-color: #ff69b4; /* Pink border color on hover */
+  }
+
+  /* Additional styling for card body */
+  .card-body {
+    background-color: #222; /* Dark background color */
+    color: #fff; /* Light font color */
+  }
+
+  /* Additional styling for card title */
+  .card-title {
+    color: #ff69b4; /* Pink font color for card titles */
+  }
+
+  /* Additional styling for card text */
+  .card-text {
+    color: #ccc; /* Light gray font color for card text */
+  }
+
+
+    </style>
+  </head>
+  <body>
+    <div class="container text-center mt-5">
+      <h1>Welcome to the Deep Learning Journey</h1>
+      <button id="startButton" class="btn btn-primary mt-3">Start</button>
+    </div>
+
+    <!-- Pop-up Message -->
+    <div id="popupMessage" class="message">
+      <h2>Let's start the deep learning journey</h2>
+      <button id="closeButton" class="btn btn-secondary">Close</button>
+    </div>
+
+    <!-- Introduction Content -->
+    <div
+      id="introductionContent"
+      class="container text-center mt-5 introduction-content"
+    >
+      <h1 style="color: #d147a3">Introduction to Deep Learning</h1>
+      <p>
+        Deep learning, a cutting-edge branch of AI, mimics the human brain's
+        structure and learning process. Comprised of artificial neural networks
+        with many layers, it devours vast amounts of data, uncovering intricate
+        patterns. Through this data analysis, machines gain remarkable
+        abilities, from recognizing faces in photos to deciphering human speech.
+        Deep learning fuels advancements in healthcare, enabling doctors to
+        detect diseases in medical scans with higher accuracy. It transforms
+        industries – self-driving cars navigate roads thanks to deep learning
+        algorithms. Even our entertainment is influenced by deep learning, with
+        recommendation systems suggesting movies and music tailored to our
+        preferences. As deep learning continues to evolve, it holds immense
+        potential to revolutionize numerous fields, shaping a future driven by
+        intelligent machines.
+      </p>
+    </div>
+
+    <!-- Deep Learning Applications Cards -->
+    <div id="deepLearningApplications" class="container mt-5 hide">
+      <h2 class="text-center section-title" style="font-size: 70px;">Deep Learning Applications</h2>
+      <div class="row mt-5">
+        <!-- Sentiment Analysis Card -->
+        <div class="col-md-4">
+          <div class="card">
+            <img
+              src="car.jpeg"
+              class="card-img-top"
+              alt="Sentiment Analysis"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Self driving cars</h5>
+              <p class="card-text">
+                :A self-driving car navigates a busy city street, using deep learning to identify pedestrians, vehicles, and traffic signals.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Style Transfer Card -->
+        <div class="col-md-4">
+          <div class="card">
+            <img
+              src="medical.jpeg"
+              class="card-img-top"
+              alt="Style Transfer"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Medical diagnosis</h5>
+              <p class="card-text">
+                A doctor analyzes an MRI scan with the help of a deep learning application that highlights potential abnormalities.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Object Detection Card -->
+        <div class="col-md-4">
+          <div class="card">
+            <img
+              src="facial.jpeg"
+              class="card-img-top"
+              alt="Object Detection"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Facial Detection</h5>
+              <p class="card-text">
+               A security system unlocks a door after recognizing a person's face through a deep learning algorithm.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resources and Tutorials Section -->
+    <div id="resourcesSection" class="container mt-5 hide">
+      <h2 class="text-center section-title" style="font-size: 70px;color:white;">
+        Resources and Tutorials
+      </h2>
+      <div class="row mt-5">
+        <!-- Online Courses Column -->
+        <div class="col-md-4">
+          <h3 class="text-center">Online Courses</h3>
+          <ul>
+            <li><a href="#">Coursera - Deep Learning Specialization</a></li>
+            <li><a href="#">edX - Introduction to Deep Learning</a></li>
+            <li>
+              <a href="#"
+                >MATLAB Deep Learning Tutorials | Design Deep Neural Networks</a
+              >
+            </li>
+            <li>
+              <a href="#"
+                >AI & Machine Learning Course - #1 Machine Learning Course</a
+              >
+            </li>
+          </ul>
+        </div>
+        <!-- Books Column -->
+        <div class="col-md-4">
+          <h3 class="text-center">Books</h3>
+          <ul>
+            <li><a href="#">Deep Learning" by Ian Goodfellow</a></li>
+            <li>
+              <a href="#"
+                >"Hands-On Machine Learning with Scikit-Learn, Keras, and
+                TensorFlow" by Aurélien Géron</a
+              >
+            </li>
+            <li><a href="#">Deep Learning: A Practitioner's Approach.</a></li>
+            <li>
+              <a href="#">Deep Learning for Computer Vision with Python</a>
+            </li>
+          </ul>
+        </div>
+        <!-- Tutorials Column -->
+        <div class="col-md-4">
+          <h3 class="text-center">Tutorials</h3>
+          <ul>
+            <li><a href="#">TensorFlow Tutorials</a></li>
+            <li><a href="#">PyTorch Tutorials</a></li>
+            <li><a href="#">Theano Tutorial.</a></li>
+            <li><a href="#">Neural Networks for Matlab</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Demos Section -->
+    <div id="interactiveDemos" class="container mt-5 hide">
+      <h2 class="text-center section-title" style="font-size: 70px;color:white;">
+        Interactive Demos
+      </h2>
+      <div class="row mt-5">
+        <!-- Demo Card 1 -->
+        <div class="col-md-4">
+          <div class="card demo-card">
+            <div class="card-body">
+              <h5 class="card-title">Image Classification</h5>
+              <p class="card-text">
+                Upload an image and see the classification results.
+              </p>
+              <button class="btn btn-primary btn-block">Try Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Demo Card 2 -->
+        <div class="col-md-4">
+          <div class="card demo-card">
+            <div class="card-body">
+              <h5 class="card-title">Text Generation</h5>
+              <p class="card-text">
+                Enter a prompt and generate text using a language model.
+              </p>
+              <button class="btn btn-primary btn-block">Try Now</button>
+            </div>
+          </div>
+        </div>
+        <!-- Demo Card 3 -->
+        <div class="col-md-4">
+          <div class="card demo-card">
+            <div class="card-body">
+              <h5 class="card-title">Object Detection</h5>
+              <p class="card-text">
+                Detect objects in an image or video stream.
+              </p>
+              <button class="btn btn-primary btn-block">Try Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Sentiment Analysis Demo -->
+
+    <div id="sentimentAnalysis" class="container mt-5 hide">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="demo-card">
+            <h2 class="text-center section-title">Sentiment Analysis</h2>
+            <div class="input-group mb-3">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter your text..."
+              />
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="button">Analyze</button>
+              </div>
+            </div>
+            <!--Display sentiment analysis result here -->
+            <div id="sentimentResult"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Style Transfer Demo -->
+    <div id="styleTransfer" class="container mt-5 hide">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="demo-card">
+            <h2 class="text-center section-title">Style Transfer</h2>
+            <div class="form-group">
+              <label for="contentImage">Content Image:</label>
+              <input type="file" class="form-control-file" id="contentImage" />
+            </div>
+            <div class="form-group">
+              <label for="styleImage">Style Image:</label>
+              <input type="file" class="form-control-file" id="styleImage" />
+            </div>
+            <button class="btn btn-primary btn-block" id="transferButton">
+              Transfer Style
+            </button>
+            <!-- Display style transferred image here -->
+            <div id="styleTransferResult"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Natural Language Processing Demo -->
+    <div id="nlpDemo" class="container mt-5 hide">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="demo-card">
+            <h2 class="text-center section-title">
+              Natural Language Processing
+            </h2>
+            <div class="form-group">
+              <label for="textInput">Enter Text:</label>
+              <textarea class="form-control" id="textInput" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="slider">Select Importance Level:</label>
+              <input
+                type="range"
+                class="form-control-range"
+                id="slider"
+                min="1"
+                max="10"
+                value="5"
+              />
+            </div>
+            <button class="btn btn-primary btn-block" id="processButton">
+              Process Text
+            </button>
+            <!-- Display processed text result here -->
+            <div id="nlpResult"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tutorialVideos" class="container mt-5 hide">
+      <h2 class="text-center section-title" style="font-size: 70px">
+        Tutorial Videos
+      </h2>
+      <div class="row mt-5">
+        <!-- Sentiment Analysis Tutorial Video -->
+        <div class="col-md-4">
+          <h3 class="text-center">Sentiment Analysis Tutorial</h3>
+
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/Ao4-ZIPOGJI"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <!-- Style Transfer Tutorial Video -->
+        <div class="col-md-4">
+          <h3 class="text-center">Style Transfer Tutorial</h3>
+
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/bFeltWvzZpQ"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <!-- Natural Language Processing Tutorial Video -->
+        <div class="col-md-4">
+          <h3 class="text-center">Natural Language Processing Tutorial</h3>
+
+          <iframe
+            width="100%"
+            height="315"
+            src="https://www.youtube.com/embed/ENLEjGozrio"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Feedback Section -->
+    <div id="userFeedback" class="container mt-5 hide">
+  <h2 class="text-center section-title" style="font-size: 70px">
+    User Feedback
+  </h2>
+  <div class="row mt-4 justify-content-center"> <!-- Center the row -->
+    <div class="col-md-6">
+      <form>
+        <div class="form-group">
+          <label for="feedbackName">Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="feedbackName"
+            placeholder="Enter your name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="feedbackEmail">Email:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="feedbackEmail"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="feedbackMessage">Message:</label>
+          <textarea
+            class="form-control"
+            id="feedbackMessage"
+            rows="5"
+            placeholder="Enter your message"
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Submit</button> <!-- Center the button -->
+      </form>
+    </div>
+  </div>
+</div>
+<footer id="foo" class="footer mt-5 hide">
+        <div class="container text-center">
+            <span class="text-muted">© 2024 Deep Learning Journey. All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      // Show pop-up message when the Start button is clicked
+      $(document).ready(function () {
+        $("#startButton").click(function () {
+          $("#popupMessage").fadeIn();
+        });
+
+        $("#closeButton").click(function () {
+          $("#popupMessage").fadeOut(function () {
+            $("#introductionContent").fadeIn(function () {
+              // Fade in the introduction content
+              $("#deepLearningApplications").fadeIn(function () {
+                // Fade in the deep learning applications after the introduction content
+                $("#resourcesSection").fadeIn(function () {
+                  $("#interactiveDemos").fadeIn(function () {
+                    $("#sentimentAnalysis").fadeIn(function () {
+                      $("#styleTransfer").fadeIn(function () {
+                        $("#nlpDemo").fadeIn(function () {
+                          $("#tutorialVideos").fadeIn(function () {
+                            $("#userFeedback").fadeIn(function(){
+                              $("#foo").fadeIn();
+                            });
+                          });
+                        });
+                      });
+                    });
+                  });
+                });
+              });
+            });
+          });
+        });
+      });
+    </script>
+    
+  </body>
+</html>
